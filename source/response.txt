@@ -1,0 +1,4 @@
+Response{protocol=http/1.1, code=200, message=OK, url=https://apis.paralleldots.com/v3/taxonomy?api_key=V5LSS0MBPt51evJIZg3QJOrkm1Q8qOhcdbApVAdbR9o&text=For%20the%20Yankees,%20it%20took%20a%20stunning%20comeback%20after%20being%20down%202-0%20to%20the%20Indians%20in%20the%20American%20League%20Division%20Series.%20For%20the%20Astros,%20it%20took%20beating%20Chris%20Sale%20to%20top%20the%20Red%20Sox.}
+{"code": 200, "taxonomy": [{"confidence_score": 0.940908, "tag": "sports/sports news"}, {"confidence_score": 0.5065925121307373, "tag": "news/international news"}, {"confidence_score": 0.399497, "tag": "health and fitness/sports medicine"}]}
+
+Process finished with exit code 0
