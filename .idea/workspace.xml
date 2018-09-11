@@ -3,12 +3,10 @@
   <component name="ChangeListManager">
     <list id="a85355b4-3cdf-4e60-9099-aee81cfa4283" name="Revert &quot;put back import statement&quot; This reverts commit 7101eb8" comment="Revert &quot;put back import statement&quot;&#10;&#10;This reverts commit 7101eb8" />
     <list id="ea1f8799-f7bb-47b8-9e19-7b0f3a478317" name="Revert &quot;First Commit&quot; This reverts commit 5a6f455" comment="Revert &quot;First Commit&quot;&#10;&#10;This reverts commit 5a6f455" />
-    <list default="true" id="c2c14103-b783-49af-9750-80e0fc9238ff" name="Default" comment="did some things">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/STH/HelloWorld.class" afterPath="$PROJECT_DIR$/out/production/STH/HelloWorld.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/STH/main/CustomClassifier.class" afterPath="$PROJECT_DIR$/out/production/STH/main/CustomClassifier.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+    <list default="true" id="c2c14103-b783-49af-9750-80e0fc9238ff" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/source/Print.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/source/main/STH.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/main/CustomClassifier.java" afterPath="$PROJECT_DIR$/source/main/CustomClassifier.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -134,6 +132,17 @@
             <path>
               <item name="STH" type="b2602c69:ProjectViewProjectNode" />
               <item name="STH" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="STH" type="b2602c69:ProjectViewProjectNode" />
+              <item name="STH" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="STH" type="b2602c69:ProjectViewProjectNode" />
+              <item name="STH" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -316,7 +325,7 @@
       <workItem from="1536566363406" duration="2045000" />
       <workItem from="1536635626970" duration="88000" />
       <workItem from="1536650430960" duration="469000" />
-      <workItem from="1536650918383" duration="100000" />
+      <workItem from="1536650918383" duration="256000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1536565612349</created>
@@ -374,11 +383,18 @@
       <option name="project" value="LOCAL" />
       <updated>1536567968671</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="git ignore test">
+      <created>1536651041077</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1536651041077</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8329000" />
+    <option name="totallyTimeSpent" value="8485000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -391,7 +407,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958803" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -400,7 +415,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958803" sideWeight="0.50216216" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28963795" sideWeight="0.49783784" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28963795" sideWeight="0.49783784" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -463,7 +478,8 @@
     <MESSAGE value="changed gitignore main" />
     <MESSAGE value="changed gitignore source" />
     <MESSAGE value="did some things" />
-    <option name="LAST_COMMIT_MESSAGE" value="did some things" />
+    <MESSAGE value="git ignore test" />
+    <option name="LAST_COMMIT_MESSAGE" value="git ignore test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
