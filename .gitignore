@@ -1,2 +1,5 @@
 source/response.txt
+.idea/*
+out/production/STH/Print.class
+out/production/STH/main/STH.class
 test.txt
