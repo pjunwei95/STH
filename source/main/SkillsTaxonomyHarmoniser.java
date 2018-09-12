@@ -10,17 +10,58 @@ import java.util.*;
 //        Containers that listen to https calls
 
 public class SkillsTaxonomyHarmoniser {
-    private Scanner sc = new Scanner(System.in);
+    public Scanner sc = new Scanner(System.in);
 
+    void displayUnderDevelopment() {
+        System.out.println(Message.DISPLAY_DEVELOPMENT.trim());
+        System.out.println("Exiting...");
+        System.out.println(Message.BORDER);
+        System.out.println("Going back to main menu");
+    }
+
+    void misc() {
+
+    }
+
+    void modelCommand() {
+        System.out.println("What would you like to do?");
+        System.out.println("    1. Create new model" + Message.DISPLAY_DEVELOPMENT);
+        System.out.println("    2. Update existing model");
+        String command = processInput();
+
+        switch (command) {
+            case "1": {
+                displayUnderDevelopment();
+                break;
+            }
+            case "2": {
+                System.out.println("Which model would you like to update?");
+                ArrayList<String> models = new ArrayList<String>();
+                System.out.printf("%d. %s\n", 1, CustomClassifier.category);
+                displayUnderDevelopment();
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
+    String processInput() {
+        String command = sc.nextLine();
+        while (!command.equals("1") && !command.equals("2")) {
+            System.out.println(Message.ERROR_INPUT);
+            System.out.println(Message.INSTRUCTIONS);
+            command = sc.nextLine();
+        }
+        return command;
+    }
 
     private void controller() {
-        String function = sc.nextLine();
-        while (!function.equals("1") && !function.equals("2")) {
-            System.out.println(Message.INPUT_ERROR);
-            function = sc.nextLine();
-        }
-        switch (function) {
+        String command = processInput();
+
+        switch (command) {
             case "1": {
+                modelCommand();
                 break;
             }
             case "2": {
@@ -41,8 +82,9 @@ public class SkillsTaxonomyHarmoniser {
         System.out.println("Functions: ");
         System.out.println("    1. New/Update Model");
         System.out.println("    2. Harmonise the skills");
-        System.out.println("Please select the options(no.) which you would like to use:");
+        System.out.println(Message.INSTRUCTIONS);
         controller();
+        misc();
     }
 
     private void run() {
@@ -52,7 +94,7 @@ public class SkillsTaxonomyHarmoniser {
                 view();
                 Thread.sleep(1000);
             }
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

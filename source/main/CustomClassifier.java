@@ -1,5 +1,7 @@
 package main;
 
+import java.net.UnknownHostException;
+
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -10,13 +12,12 @@ import okhttp3.Response;
 public class CustomClassifier {
 
     private String API_KEY = ""; //V5lSS0MB
-    private String text = "java";
+    public static final String text = "java";
     //TODO mongojack to parse json objects from DBs to categories
-    private String category = "{\"IT\": [\"java\", \"programming\", \"APIs\"]," +
+    public static final String category = "{\"IT\": [\"java\", \"programming\", \"APIs\"]," +
             " \"HR\": [\"human resource\"]}";
 
     public void run() {
-        //System.out.println("Hello STH World!");
 
         try {
             String url = "https://apis.paralleldots.com/v3/custom_classifier";
@@ -24,7 +25,7 @@ public class CustomClassifier {
             MediaType mediatype = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(mediatype, "");
             Request request = new Request.Builder()
-                    .url(url+"?api_key="+API_KEY+"&text="+text+"&category="+category)
+                    .url(url + "?api_key=" + API_KEY + "&text=" + text + "&category=" + category)
                     .post(body)
                     .addHeader("cache-control", "no-cache")
                     .build();
@@ -37,12 +38,13 @@ public class CustomClassifier {
                 String responseBodyString = new String(responseBodyByte, "UTF-8");
                 System.out.println(responseBodyString);
 
-                 //TODO: implement write class that stores in a package of models
-                // creating a Model class
+                //TODO: implement write class that stores in a package of models
 
             }
 
 
+        } catch (UnknownHostException e) {
+            System.out.println(Message.ERROR_NETWORK);
         } catch (Exception e) {
             e.printStackTrace();
         }
