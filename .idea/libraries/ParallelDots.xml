@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="ParallelDots">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/API/dist/ParallelDots.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
