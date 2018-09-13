@@ -12,6 +12,7 @@ import okhttp3.Response;
 public class CustomClassifier {
 
     private String API_KEY = ""; //V5lSS0MB
+    
     public static final String text = "java";
     //TODO mongojack to parse json objects from DBs to categories
     public static final String category = "{\"IT\": [\"java\", \"programming\", \"APIs\"]," +
@@ -38,7 +39,7 @@ public class CustomClassifier {
                 String responseBodyString = new String(responseBodyByte, "UTF-8");
                 System.out.println(responseBodyString);
 
-                //TODO: implement write class that stores in a package of models
+
 
             }
 

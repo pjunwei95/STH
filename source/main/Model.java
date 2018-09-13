@@ -8,6 +8,6 @@ public class Model {
 
     public Model(String category){
         this.category = category;
-        this.subcategory = new ArrayList<String>();
+        this.subcategory = new ArrayList<>();
     }
 }

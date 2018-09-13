@@ -9,14 +9,30 @@ import java.util.*;
 //        Free tier hosting: heroku, aws, RESTFUL for frontend
 //        Containers that listen to https calls
 
+//TODO read API key offline
+//TODO gradle integration with read API key
+//TODO jackson dependencies
+
 public class SkillsTaxonomyHarmoniser {
     public Scanner sc = new Scanner(System.in);
+
+    //Helpers
 
     void displayUnderDevelopment() {
         System.out.println(Message.DISPLAY_DEVELOPMENT.trim());
         System.out.println("Exiting...");
         System.out.println(Message.BORDER);
         System.out.println("Going back to main menu");
+    }
+
+    String processInput() {
+        String command = sc.nextLine();
+        while (!command.equals("1") && !command.equals("2")) {
+            System.out.println(Message.ERROR_INPUT);
+            System.out.println(Message.INSTRUCTIONS);
+            command = sc.nextLine();
+        }
+        return command;
     }
 
     void misc() {
@@ -36,24 +52,16 @@ public class SkillsTaxonomyHarmoniser {
             }
             case "2": {
                 System.out.println("Which model would you like to update?");
-                ArrayList<String> models = new ArrayList<String>();
+                ArrayList<String> models = new ArrayList<>();
                 System.out.printf("%d. %s\n", 1, CustomClassifier.category);
+                String category = sc.nextLine();
+                System.out.println("Category not available");
                 displayUnderDevelopment();
                 break;
             }
             default:
                 break;
         }
-    }
-
-    String processInput() {
-        String command = sc.nextLine();
-        while (!command.equals("1") && !command.equals("2")) {
-            System.out.println(Message.ERROR_INPUT);
-            System.out.println(Message.INSTRUCTIONS);
-            command = sc.nextLine();
-        }
-        return command;
     }
 
     private void controller() {
