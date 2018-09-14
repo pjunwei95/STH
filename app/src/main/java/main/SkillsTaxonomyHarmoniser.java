@@ -1,8 +1,5 @@
 package main;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 //        Scoping of ict and skills from linkedin list of skills ad cope it out
@@ -12,13 +9,13 @@ import java.util.*;
 //        Free tier hosting: heroku, aws, RESTFUL for frontend
 //        Containers that listen to https calls
 
-//TODO read API key offline
+// DONE read API key offline
 // gradle integration with read API key DONE
 // jackson dependencies DONE
 
 public class SkillsTaxonomyHarmoniser {
     public Scanner sc = new Scanner(System.in);
-
+    boolean isLoop = false;
 
     void misc() {
 
@@ -105,6 +102,8 @@ public class SkillsTaxonomyHarmoniser {
             while (true){
                 view();
                 Thread.sleep(1000);
+                if (!isLoop)
+                    break;
             }
         } catch (Exception e) {
             e.printStackTrace();

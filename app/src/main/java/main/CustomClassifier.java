@@ -2,6 +2,10 @@ package main;
 
 import java.net.UnknownHostException;
 
+import org.json.JSONObject;
+
+import com.fasterxml.jackson.databind.util.JSONPObject;
+
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -15,8 +19,12 @@ public class CustomClassifier {
     
     public static final String text = "java";
     //TODO mongojack to parse json objects from DBs to categories
+    //TODO Process Json to strings by getting top response, delimited with their confidences
+
     public static final String category = "{\"IT\": [\"java\", \"programming\", \"APIs\"]," +
             " \"HR\": [\"human resource\"]}";
+
+    //"{"taxonomy":[{"tag":"IT","confidence_score":0.5685330033},{"tag":"HR","confidence_score":0.5685330033}],"code":200}";
 
     public void run() {
 
@@ -31,13 +39,15 @@ public class CustomClassifier {
                     .addHeader("cache-control", "no-cache")
                     .build();
             Response response = client.newCall(request).execute();
-//            System.out.println(response);
+//            System.out.println("Respone: " + response);
+//            System.out.println("ResponseBodyToString: " + response.body().toString());
 
             if (response.code() == 200) {
                 byte[] responseBodyByte = response.body().bytes();
                 String responseBodyString = new String(responseBodyByte, "UTF-8");
-                System.out.println(responseBodyString);
+                System.out.println("ResponseBodyString: "+ responseBodyString);
 
+                JSONObject jsonObject = new JSONObject(response.body().string());
             }
 
 
