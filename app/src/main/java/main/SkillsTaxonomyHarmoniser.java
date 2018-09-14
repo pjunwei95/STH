@@ -19,28 +19,8 @@ import java.util.*;
 public class SkillsTaxonomyHarmoniser {
     public Scanner sc = new Scanner(System.in);
 
-    //Helpers
-
-    void displayUnderDevelopment() {
-        System.out.println(Message.DISPLAY_DEVELOPMENT.trim());
-        System.out.println("Exiting...");
-        System.out.println(Message.BORDER);
-        System.out.println("Going back to main menu");
-    }
-
-    String processInput() {
-        String command = sc.nextLine();
-        while (!command.equals("1") && !command.equals("2")) {
-            System.out.println(Message.ERROR_INPUT);
-            System.out.println(Message.INSTRUCTIONS);
-            command = sc.nextLine();
-        }
-        return command;
-    }
 
     void misc() {
-        Path apiFilePath = Paths.get("api_key.xml");
-        File apiFile = new File(apiFilePath.toUri());
 
     }
 
@@ -98,6 +78,25 @@ public class SkillsTaxonomyHarmoniser {
         System.out.println(Message.INSTRUCTIONS);
         controller();
         misc();
+    }
+
+    //Helpers
+
+    void displayUnderDevelopment() {
+        System.out.println(Message.DISPLAY_DEVELOPMENT.trim());
+        System.out.println("Exiting...");
+        System.out.println(Message.BORDER);
+        System.out.println("Going back to main menu");
+    }
+
+    String processInput() {
+        String command = sc.nextLine();
+        while (!command.equals("1") && !command.equals("2")) {
+            System.out.println(Message.ERROR_INPUT);
+            System.out.println(Message.INSTRUCTIONS);
+            command = sc.nextLine();
+        }
+        return command;
     }
 
     private void run() {

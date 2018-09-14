@@ -4,8 +4,11 @@ out
 app/.gradle
 app/gradle
 app/out
-
+app/src/main/resources/
+app/src/test/
 
 #files
 test.txt
 api_key.xml
+app/gradlew
+app/gradlew.bat

@@ -11,7 +11,7 @@ import okhttp3.Response;
 
 public class CustomClassifier {
 
-    private String API_KEY = ""; //V5lSS0MB
+    private String API_KEY = ReadApiKey.getAPI_KEY();
     
     public static final String text = "java";
     //TODO mongojack to parse json objects from DBs to categories
@@ -31,15 +31,12 @@ public class CustomClassifier {
                     .addHeader("cache-control", "no-cache")
                     .build();
             Response response = client.newCall(request).execute();
-            System.out.println(response);
+//            System.out.println(response);
 
             if (response.code() == 200) {
-                System.out.println("RESPONSE SUCCESS! RESPONSE:");
                 byte[] responseBodyByte = response.body().bytes();
                 String responseBodyString = new String(responseBodyByte, "UTF-8");
                 System.out.println(responseBodyString);
-
-
 
             }
 
