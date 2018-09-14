@@ -1,5 +1,8 @@
 package main;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 //        Scoping of ict and skills from linkedin list of skills ad cope it out
@@ -10,8 +13,8 @@ import java.util.*;
 //        Containers that listen to https calls
 
 //TODO read API key offline
-//TODO gradle integration with read API key
-//TODO jackson dependencies
+// gradle integration with read API key DONE
+// jackson dependencies DONE
 
 public class SkillsTaxonomyHarmoniser {
     public Scanner sc = new Scanner(System.in);
@@ -36,6 +39,8 @@ public class SkillsTaxonomyHarmoniser {
     }
 
     void misc() {
+        Path apiFilePath = Paths.get("api_key.xml");
+        File apiFile = new File(apiFilePath.toUri());
 
     }
 
