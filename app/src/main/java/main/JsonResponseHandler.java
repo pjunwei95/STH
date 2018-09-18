@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
                     " {\"tag\":\"HR\",\"confidence_score\":0.5685330033}],\"code\":200}";
                     */
 
-public class HandleJsonResponse {
+public class JsonResponseHandler {
 
     void run() {
         try {
@@ -25,8 +25,8 @@ public class HandleJsonResponse {
     }
 
     public static void main(String[] args) {
-        HandleJsonResponse handleJsonResponse = new HandleJsonResponse();
-        handleJsonResponse.run();
+        JsonResponseHandler jsonResponseHandler = new JsonResponseHandler();
+        jsonResponseHandler.run();
     }
 
 }
