@@ -2,23 +2,41 @@ package main;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-/*String jsonInString = "{\"taxonomy\":[{\"tag\":\"IT\",\"confidence_score\":0.5685330033}," +
-                    " {\"tag\":\"HR\",\"confidence_score\":0.5685330033}],\"code\":200}";
-                    */
+
 
 public class JsonResponseHandler {
 
-    void run() {
+//    private String jsonInString = "{\"taxonomy\":[{\"tag\":\"IT\",\"confidence_score\":0.5685330033}," +
+//            " {\"tag\":\"HR\",\"confidence_score\":0.5685330033}],\"code\":200}";
+
+    void run(String jsonInString) {
+
+        ObjectMapper mapper = new ObjectMapper();
+
         try {
-            ObjectMapper mapper = new ObjectMapper();
-            String jsonInString = "{\"name\" : \"mkyong\"}";
-            //JSON from String to Object
-            Staff obj = mapper.readValue(jsonInString, Staff.class);
+
+            // Convert JSON string to Object
+            ConfidenceResponse confidenceResponse = mapper.readValue(jsonInString, ConfidenceResponse.class);
+            System.out.println(confidenceResponse);
+
+            System.out.println("Testing: ");
+            System.out.println("Getting value of 2nd tag: " +
+                    confidenceResponse.getTaxonomy().get(1).getTag());
+
+            //Pretty print
+            String prettyConfidenceResponse = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(confidenceResponse);
+            System.out.println(prettyConfidenceResponse);
+
+        } catch (JsonGenerationException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -26,74 +44,48 @@ public class JsonResponseHandler {
 
     public static void main(String[] args) {
         JsonResponseHandler jsonResponseHandler = new JsonResponseHandler();
-        jsonResponseHandler.run();
+//        jsonResponseHandler.run();
     }
 
 }
-//"{"taxonomy":[{"tag":"IT","confidence_score":0.5685330033},
-// {"tag":"HR","confidence_score":0.5685330033}],"code":200}";
-
-class Staff {
-
-    private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public BigDecimal getSalary() {
-        return salary;
-    }
-
-    public void setSalary(BigDecimal salary) {
-        this.salary = salary;
-    }
-
-    public List<String> getSkills() {
-        return skills;
-    }
-
-    public void setSkills(List<String> skills) {
-        this.skills = skills;
-    }
-
-    private int age;
-    private String position;
-    private BigDecimal salary;
-    private List<String> skills;
-}
-
 class ConfidenceResponse{
-    ArrayList<Taxonomy> taxonomy;
-    int code;
-
-    public ConfidenceResponse(){
-        this.taxonomy = new ArrayList<>();
+    public List<Taxonomy> getTaxonomy() {
+        return taxonomy;
     }
 
+    public void setTaxonomy(List<Taxonomy> taxonomy) {
+        this.taxonomy = taxonomy;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    private List<Taxonomy> taxonomy;
+    private int code;
 }
 
 class Taxonomy{
-    String tag;
-    double confidenceScore;
+    private String tag;
+    private BigDecimal confidence_score;
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public BigDecimal getConfidence_score() {
+        return confidence_score;
+    }
+
+    public void setConfidence_score(BigDecimal confidence_score) {
+        this.confidence_score = confidence_score;
+    }
 }

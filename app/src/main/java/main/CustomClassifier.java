@@ -15,7 +15,6 @@ public class CustomClassifier {
     
     public static final String text = "java";
     //TODO mongojack to parse json objects from DBs to categories
-    //TODO Process Json to strings by getting top response, delimited with their confidences
 
     public static final String category = "{\"IT\": [\"java\", \"programming\", \"APIs\"]," +
             " \"HR\": [\"human resource\"]}";
@@ -24,6 +23,18 @@ public class CustomClassifier {
     // {"tag":"HR","confidence_score":0.5685330033}],"code":200}";
 
 
+    public void parseResponse(Response response) {
+        try {
+            byte[] responseBodyByte = response.body().bytes();
+            String responseBodyStringJson = new String(responseBodyByte, "UTF-8");
+//            System.out.println("ResponseBodyStringJson: " + responseBodyStringJson);
+//            System.out.println(Message.BORDER);
+            new JsonResponseHandler().run(responseBodyStringJson);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public void run() {
 
@@ -39,12 +50,13 @@ public class CustomClassifier {
                     .build();
             Response response = client.newCall(request).execute();
             System.out.println("Response: " + response);
-            System.out.println("ResponseBodyToString: " + response.body().toString());
+            System.out.println(Message.BORDER);
+//            System.out.println("Response.body().toString(): " + response.body().toString());
+//            System.out.println(Message.BORDER);
 
-            if (response.code() == 200) {
-                byte[] responseBodyByte = response.body().bytes();
-                String responseBodyString = new String(responseBodyByte, "UTF-8");
-                System.out.println("ResponseBodyString: "+ responseBodyString);
+
+            if (response.isSuccessful()) {
+                parseResponse(response);
             }
 
 
@@ -53,6 +65,11 @@ public class CustomClassifier {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    // Deprecated
+    public String convertJsonStringtoJavaString(String string) {
+        return string.replace("\"","\\\"" );
     }
 
     public static void main(String[] args) {
