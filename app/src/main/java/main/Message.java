@@ -8,5 +8,6 @@ public class Message {
     public static final String DISPLAY_DEVELOPMENT = " (Under development)";
     public static final String INSTRUCTIONS = "Please select the option number which you would like to use:";
     public static final String ERROR_NETWORK = "ERROR: NETWORK ERROR";
+    public static final String ERROR_FILE = "ERROR: FILE NOT FOUND";
 
 }

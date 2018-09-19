@@ -14,93 +14,26 @@ import java.util.*;
 // jackson dependencies DONE
 
 public class SkillsTaxonomyHarmoniser {
-    public Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
+    private Controller sthController;
     boolean isLoop = false;
+
 
     void misc() {
 
     }
 
-    void modelCommand() {
-        System.out.println("What would you like to do?");
-        System.out.println("    1. Create new model" + Message.DISPLAY_DEVELOPMENT);
-        System.out.println("    2. Update existing model");
-        String command = processInput();
-
-        switch (command) {
-            case "1": {
-                displayUnderDevelopment();
-                break;
-            }
-            case "2": {
-                System.out.println("Which model would you like to update?");
-                ArrayList<String> models = new ArrayList<>();
-                System.out.printf("%d. %s\n", 1, CustomClassifier.category);
-                String category = sc.nextLine();
-                System.out.println("Category not available");
-                displayUnderDevelopment();
-                break;
-            }
-            default:
-                break;
-        }
-    }
-
-    private void controller() {
-        String command = processInput();
-
-        switch (command) {
-            case "1": {
-                modelCommand();
-                break;
-            }
-            case "2": {
-                new CustomClassifier().run();
-                break;
-            }
-            default:
-                break;
-        }
-    }
-
-
-    /*
-    *   This method provides the view of the CLI interface
-     */
-    private void view(){
-        System.out.println(Message.BORDER);
-        System.out.println("Functions: ");
-        System.out.println("    1. New/Update Model");
-        System.out.println("    2. Harmonise the skills");
-        System.out.println(Message.INSTRUCTIONS);
-        controller();
+    private void executeController(){
+        sthController = new Controller(sc);
+        sthController.controller();
         misc();
-    }
-
-    //Helpers
-
-    void displayUnderDevelopment() {
-        System.out.println(Message.DISPLAY_DEVELOPMENT.trim());
-        System.out.println("Exiting...");
-        System.out.println(Message.BORDER);
-        System.out.println("Going back to main menu");
-    }
-
-    String processInput() {
-        String command = sc.nextLine();
-        while (!command.equals("1") && !command.equals("2")) {
-            System.out.println(Message.ERROR_INPUT);
-            System.out.println(Message.INSTRUCTIONS);
-            command = sc.nextLine();
-        }
-        return command;
     }
 
     private void run() {
         System.out.println(Message.WELCOME_MESSAGE);
         try {
             while (true){
-                view();
+                executeController();
                 Thread.sleep(1000);
                 if (!isLoop)
                     break;
