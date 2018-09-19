@@ -49,6 +49,9 @@ public class JsonResponseHandler {
 
 }
 class ConfidenceResponse{
+    private List<Taxonomy> taxonomy;
+    private int code;
+
     public List<Taxonomy> getTaxonomy() {
         return taxonomy;
     }
@@ -64,9 +67,6 @@ class ConfidenceResponse{
     public void setCode(int code) {
         this.code = code;
     }
-
-    private List<Taxonomy> taxonomy;
-    private int code;
 }
 
 class Taxonomy{

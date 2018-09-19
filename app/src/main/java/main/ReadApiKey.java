@@ -19,7 +19,7 @@ public class ReadApiKey {
 
     public static String getAPI_KEY() {
         try {
-            Path path = Paths.get("test.txt");
+            Path path = Paths.get("api_key.txt");
 //            System.out.println(path.toUri());
             File file = new File(path.toUri());
             String API_KEY = readFile("test.txt", UTF_8);

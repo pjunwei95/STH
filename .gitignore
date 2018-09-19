@@ -8,7 +8,7 @@ app/src/main/resources/
 app/src/test/
 
 #files
-test.txt
+api_key.txt
 api_key.xml
 app/gradlew
 app/gradlew.bat
