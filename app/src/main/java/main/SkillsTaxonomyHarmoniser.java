@@ -17,6 +17,7 @@ public class SkillsTaxonomyHarmoniser {
     private Scanner sc = new Scanner(System.in);
     private Controller sthController;
     boolean isLoop = false;
+    private Model model = new Model();
 
 
     void misc() {
@@ -25,7 +26,7 @@ public class SkillsTaxonomyHarmoniser {
 
     private void executeController(){
         sthController = new Controller(sc);
-        sthController.controller();
+        sthController.welcomeCommand();
         misc();
     }
 
@@ -33,6 +34,7 @@ public class SkillsTaxonomyHarmoniser {
         System.out.println(Message.WELCOME_MESSAGE);
         try {
             while (true){
+//                model.run();
                 executeController();
                 Thread.sleep(1000);
                 if (!isLoop)

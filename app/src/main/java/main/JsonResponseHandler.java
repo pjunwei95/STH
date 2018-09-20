@@ -8,8 +8,6 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
-
 public class JsonResponseHandler {
 
 //    private String jsonInString = "{\"taxonomy\":[{\"tag\":\"IT\",\"confidence_score\":0.5685330033}," +
@@ -25,9 +23,9 @@ public class JsonResponseHandler {
             ConfidenceResponse confidenceResponse = mapper.readValue(jsonInString, ConfidenceResponse.class);
             System.out.println(confidenceResponse);
 
-            System.out.println("Testing: ");
-            System.out.println("Getting value of 2nd tag: " +
-                    confidenceResponse.getTaxonomy().get(1).getTag());
+//            System.out.println("Testing: ");
+//            System.out.println("Getting value of 2nd tag: " +
+//                    confidenceResponse.getTaxonomy().get(1).getTag());
 
             //Pretty print
             String prettyConfidenceResponse = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(confidenceResponse);

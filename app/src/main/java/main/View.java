@@ -2,6 +2,12 @@ package main;
 
 public class View {
 
+    static void displayWelcomeModel() {
+        System.out.println("What would you like to do?");
+        System.out.println("    1. Create new model" + Message.DISPLAY_DEVELOPMENT);
+        System.out.println("    2. Update existing model");
+    }
+
     static void displayErrorInput() {
         System.out.println(Message.ERROR_INPUT);
         System.out.println(Message.INSTRUCTIONS);

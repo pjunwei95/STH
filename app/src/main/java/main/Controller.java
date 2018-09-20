@@ -7,6 +7,7 @@ import static main.View.*;
 
 public class Controller {
     Scanner sc;
+    CustomClassifier customClassifier;
 
     String processInput() {
         String command = sc.nextLine();
@@ -18,9 +19,8 @@ public class Controller {
     }
 
     void modelCommand() {
-        System.out.println("What would you like to do?");
-        System.out.println("    1. Create new model" + Message.DISPLAY_DEVELOPMENT);
-        System.out.println("    2. Update existing model");
+        displayWelcomeModel();
+
         String command = processInput();
 
         switch (command) {
@@ -43,7 +43,7 @@ public class Controller {
     }
 
 
-    public void controller() {
+    public void welcomeCommand() {
         displayWelcome();
 
         String command = processInput();
@@ -54,7 +54,8 @@ public class Controller {
                 break;
             }
             case "2": {
-                new CustomClassifier().run();
+                customClassifier = new CustomClassifier();
+                customClassifier.run();
                 break;
             }
             default:
