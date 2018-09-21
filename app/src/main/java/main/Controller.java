@@ -46,20 +46,28 @@ public class Controller {
     public void welcomeCommand() {
         displayWelcome();
 
-        String command = processInput();
+//        String command = processInput();
+        String command = sc.nextLine();
 
-        switch (command) {
-            case "1": {
-                modelCommand();
-                break;
+
+        while (true) {
+            switch (command) {
+                case "1": {
+                    modelCommand();
+                    break;
+                }
+                case "2": {
+                    customClassifier = new CustomClassifier();
+                    customClassifier.run();
+                    break;
+                }
+                default: {
+                    displayErrorInput();
+                    command = sc.nextLine();
+//                    break;
+                    break;
+                }
             }
-            case "2": {
-                customClassifier = new CustomClassifier();
-                customClassifier.run();
-                break;
-            }
-            default:
-                break;
         }
     }
 

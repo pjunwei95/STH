@@ -17,7 +17,6 @@ public class SkillsTaxonomyHarmoniser {
     private Scanner sc = new Scanner(System.in);
     private Controller sthController;
     boolean isLoop = false;
-    private Model model = new Model();
 
 
     void misc() {
