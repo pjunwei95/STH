@@ -1,6 +1,8 @@
-package main;
+package com;
+
 
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,7 +16,6 @@ public class DatabaseController {
 
     /*
     public static final String text = "java";
-    //TODO mongojack to parse json objects from DBs to categories
 
     public static final String category = "{\"IT\": [\"java\", \"programming\", \"APIs\"]," +
             " \"HR\": [\"human resource\"]}";
@@ -23,21 +24,43 @@ public class DatabaseController {
      {"tag":"HR","confidence_score":0.5685330033}],"code":200}";
     */
 
+    //MongoDB Structure
+    //DB: STH, Industry: IT
+
+    //Industry{
+    //name: string (IT)
+    //categories: AL String/Category
+
+    //Category
+    //name : string (TSC)
+    //skills: AL String/skill
+
+    //Skills
+    //name: string (App Development)
+    //keywords: AL String
+
+
     public void run() {
         try {
 
-            List<String> itKeywords = Arrays.asList("java", "programming", "APIs");
-            List<String> hrKeywords = Arrays.asList("human resource");
-            DBObject itCategory = new BasicDBObject("tag","Information Technology")
-                    .append("keywords", itKeywords);
-            DBObject hrCategory = new BasicDBObject("tag","Human Resource")
-                    .append("keywords", hrKeywords);
+            ArrayList<DBObject> listOfSkills = new ArrayList<>();
+            ArrayList<DBObject> listOfBuckets = new ArrayList<>();
+
+            List<String> keywords = Arrays.asList("blah", "blah2");
+
+            DBObject appDevelopmentSkills = new BasicDBObject("skillName", "appDevelopment")
+                    .append("keywords", keywords);
+            listOfSkills.add(appDevelopmentSkills);
+            DBObject tscBucket = new BasicDBObject("bucketName","tsc")
+                    .append("listOfSkills", listOfSkills);
+            listOfBuckets.add(tscBucket);
+            DBObject data = new BasicDBObject("listOfBuckets", listOfBuckets);
 
             MongoClient mongoClient = new MongoClient();
-            DB database = mongoClient.getDB("STH");
-            DBCollection collection = database.getCollection("skills");
+            DB database = mongoClient.getDB("sth");
+            DBCollection collection = database.getCollection("IT");
+            collection.insert(data);
 
-            collection.insert(itCategory, hrCategory);
 
             /*
             List<Integer> books = Arrays.asList(27464, 747854);
