@@ -1,19 +1,15 @@
-package main;
-
-
+package com;
 
 public class HelloWorld{
 
-    private String API_KEY = "";
-
-
-    private void run() {
-
+    void print() {
+        System.out.println("Hello World!");
     }
+
+    private void run() {}
 
     public static void main(String[] args) {
         HelloWorld myHelloWorld = new HelloWorld();
         myHelloWorld.run();
     }
-
 }

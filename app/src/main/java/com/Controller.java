@@ -1,9 +1,9 @@
-package main;
+package com;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static main.View.*;
+import static com.View.*;
 
 public class Controller {
     Scanner sc;

@@ -1,4 +1,4 @@
-package main;
+package com;
 
 public class Message {
     public static final String VERSION_NO = "0.1";

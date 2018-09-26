@@ -1,7 +1,8 @@
-package main;
+package com;
 
 import java.net.UnknownHostException;
 
+import static com.SkillsTaxonomyHarmoniser.isApiKeyEnabled;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -11,10 +12,9 @@ import okhttp3.Response;
 
 public class CustomClassifier {
 
-    private String API_KEY = ReadApiKey.getAPI_KEY();
-    
+    private static String API_KEY = ReadApiKey.getAPI_KEY();
+
     public static final String text = "java";
-    //TODO mongojack to parse json objects from DBs to categories
 
     public static final String category = "{\"IT\": [\"java\", \"programming\", \"APIs\"]," +
             " \"HR\": [\"human resource\"]}";
@@ -24,11 +24,14 @@ public class CustomClassifier {
 
 
     public void parseResponse(Response response) {
+        if (!isApiKeyEnabled)
+            API_KEY = "";
+
         try {
             byte[] responseBodyByte = response.body().bytes();
             String responseBodyStringJson = new String(responseBodyByte, "UTF-8");
-//            System.out.println("ResponseBodyStringJson: " + responseBodyStringJson);
-//            System.out.println(Message.BORDER);
+            System.out.println("ResponseBodyStringJson: " + responseBodyStringJson);
+            System.out.println(Message.BORDER);
             new JsonResponseHandler().run(responseBodyStringJson);
 
         } catch (Exception e) {
@@ -69,7 +72,7 @@ public class CustomClassifier {
 
     // Deprecated
     public String convertJsonStringtoJavaString(String string) {
-        return string.replace("\"","\\\"" );
+        return string.replace("\"", "\\\"");
     }
 
     public static void main(String[] args) {

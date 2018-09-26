@@ -1,4 +1,4 @@
-package main;
+package com;
 
 import java.io.IOException;
 import java.math.BigDecimal;
