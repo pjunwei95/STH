@@ -9,5 +9,8 @@ public class Message {
     public static final String INSTRUCTIONS = "Please select the option number which you would like to use:";
     public static final String ERROR_NETWORK = "ERROR: NETWORK ERROR";
     public static final String ERROR_FILE = "ERROR: FILE NOT FOUND";
+    public static final String UPDATING_MESSAGE = "Updating...";
+    public static final String DATABASE_UPDATE_SUCESS = "Updated to database successfully!";
+
 
 }

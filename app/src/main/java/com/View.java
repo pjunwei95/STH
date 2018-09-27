@@ -16,7 +16,7 @@ public class View {
     static void displayWelcome() {
         System.out.println(Message.BORDER);
         System.out.println("Functions: ");
-        System.out.println("    1. New/Update Model");
+        System.out.println("    1. New/Update Skill");
         System.out.println("    2. Harmonise the skills");
         System.out.println(Message.INSTRUCTIONS);
     }

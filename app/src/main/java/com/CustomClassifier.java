@@ -14,7 +14,8 @@ public class CustomClassifier {
 
     private static String API_KEY = ReadApiKey.getAPI_KEY();
 
-    public static final String text = "java";
+    public static final String text = "" +
+            "";
 
     public static final String category = "{\"IT\": [\"java\", \"programming\", \"APIs\"]," +
             " \"HR\": [\"human resource\"]}";

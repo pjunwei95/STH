@@ -3,27 +3,34 @@ package com;
 import java.util.ArrayList;
 
 public class Model {
+    private String name;
+    private ArrayList<Bucket> buckets;
+
+    public Model(String name) {
+        this.name = name;
+        this.buckets = new ArrayList<>();
+    }
+}
+
+class Bucket {
+    private String name;
+    private ArrayList<Skill> skills;
+
+    public Bucket(String name) {
+        this.name = name;
+        this.skills = new ArrayList<>();
+    }
+}
+
+
+class Skill {
     private String category;
-    private ArrayList<String> subcategory;
+    private ArrayList<String> keywords;
 
-    public Model(String category){
+    public Skill(String category){
         this.category = category;
-        this.subcategory = new ArrayList<>();
+        this.keywords = new ArrayList<>();
     }
 
-    public String getCategory() {
-        return category;
-    }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public ArrayList<String> getSubcategory() {
-        return subcategory;
-    }
-
-    public void setSubcategory(ArrayList<String> subcategory) {
-        this.subcategory = subcategory;
-    }
 }
