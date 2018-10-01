@@ -25,7 +25,7 @@ public class View {
         System.out.println(Message.DISPLAY_DEVELOPMENT.trim());
         System.out.println("Exiting...");
         System.out.println(Message.BORDER);
-        System.out.println("Going back to com menu");
+        System.out.println("Going back to main menu");
     }
 
 }

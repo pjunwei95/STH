@@ -14,8 +14,7 @@ public class CustomClassifier {
 
     private static String API_KEY = ReadApiKey.getAPI_KEY();
 
-    public static final String text = "" +
-            "";
+    public static final String text = "java";
 
     public static final String category = "{\"IT\": [\"java\", \"programming\", \"APIs\"]," +
             " \"HR\": [\"human resource\"]}";
@@ -25,8 +24,7 @@ public class CustomClassifier {
 
 
     public void parseResponse(Response response) {
-        if (!isApiKeyEnabled)
-            API_KEY = "";
+
 
         try {
             byte[] responseBodyByte = response.body().bytes();
@@ -41,6 +39,11 @@ public class CustomClassifier {
     }
 
     public void run() {
+
+        if (!isApiKeyEnabled) {
+            API_KEY = "";
+            System.out.println("API_KEY Disabled");
+        }
 
         try {
             String url = "https://apis.paralleldots.com/v3/custom_classifier";

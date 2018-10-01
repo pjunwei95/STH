@@ -8,6 +8,7 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
 public class JsonResponseHandler {
 
 //    private String jsonInString = "{\"taxonomy\":[{\"tag\":\"IT\",\"confidence_score\":0.5685330033}," +
