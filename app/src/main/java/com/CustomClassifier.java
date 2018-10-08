@@ -14,31 +14,27 @@ public class CustomClassifier {
 
     private static String API_KEY = ReadApiKey.getAPI_KEY();
 
-    private static final String text = "java";
+//    private static final String text = "i am good at hammering and java";
 
-    public static final String category = "{\"IT\": [\"java\", \"programming\", \"APIs\"]," +
-            " \"HR\": [\"human resource\"]}";
-
-    //"{"taxonomy":[{"tag":"IT","confidence_score":0.5685330033},
-    // {"tag":"HR","confidence_score":0.5685330033}],"code":200}";
+//    public static final String category = "{\"IT\": [\"java\", \"programming\", \"APIs\"]," +
+//            " \"HR\": [\"human resource\"]}";
 
 
-    public void parseResponse(Response response) {
-
-
+    public String parseResponseToJsonString(Response response) {
+        String responseBodyStringJson = null;
         try {
             byte[] responseBodyByte = response.body().bytes();
-            String responseBodyStringJson = new String(responseBodyByte, "UTF-8");
-            System.out.println("ResponseBodyStringJson: " + responseBodyStringJson);
+            responseBodyStringJson = new String(responseBodyByte, "UTF-8");
+//            System.out.println("ResponseBodyStringJson: " + responseBodyStringJson);
             System.out.println(Message.BORDER);
-            new JsonResponseHandler().run(responseBodyStringJson);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return responseBodyStringJson;
     }
 
-    public void run(String category) {
+    public Response execute(String category, String text) {
+        Response response = null;
 
         if (!isApiKeyEnabled) {
             API_KEY = "";
@@ -55,33 +51,24 @@ public class CustomClassifier {
                     .post(body)
                     .addHeader("cache-control", "no-cache")
                     .build();
-            Response response = client.newCall(request).execute();
-            System.out.println("Response: " + response);
-            System.out.println(Message.BORDER);
+            response = client.newCall(request).execute();
+//            System.out.println("Response: " + response);
+//            System.out.println(Message.BORDER);
 //            System.out.println("Response.body().toString(): " + response.body().toString());
 //            System.out.println(Message.BORDER);
-
-
-            if (response.isSuccessful()) {
-                parseResponse(response);
-            }
-
 
         } catch (UnknownHostException e) {
             System.out.println(Message.ERROR_NETWORK);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            return response;
         }
     }
 
     // Deprecated
     public String convertJsonStringtoJavaString(String string) {
         return string.replace("\"", "\\\"");
-    }
-
-    public static void main(String[] args) {
-//        CustomClassifier myCustomClassifier = new CustomClassifier();
-//        myCustomClassifier.run(category);
     }
 
 }

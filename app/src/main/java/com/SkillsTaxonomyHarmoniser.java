@@ -1,19 +1,15 @@
 package com;
 
-import java.util.*;
-
 public class SkillsTaxonomyHarmoniser {
     // rules
+    static boolean isDebug = true;
     static boolean isLoop = false;
     static boolean isApiKeyEnabled = true;
 
-    //Initialised at start
-    private Scanner sc = new Scanner(System.in);
     private Controller sthController;
 
-
     private void executeController(){
-        sthController = new Controller(sc);
+        sthController = new Controller();
         sthController.welcomeCommand();
     }
 
@@ -21,7 +17,6 @@ public class SkillsTaxonomyHarmoniser {
         System.out.println(Message.WELCOME_MESSAGE);
         try {
             while (true){
-//                model.run();
                 executeController();
                 Thread.sleep(1000);
                 if (!isLoop)
