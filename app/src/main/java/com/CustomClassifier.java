@@ -14,7 +14,7 @@ public class CustomClassifier {
 
     private static String API_KEY = ReadApiKey.getAPI_KEY();
 
-    public static final String text = "java";
+    private static final String text = "java";
 
     public static final String category = "{\"IT\": [\"java\", \"programming\", \"APIs\"]," +
             " \"HR\": [\"human resource\"]}";
@@ -38,7 +38,7 @@ public class CustomClassifier {
         }
     }
 
-    public void run() {
+    public void run(String category) {
 
         if (!isApiKeyEnabled) {
             API_KEY = "";
@@ -80,8 +80,8 @@ public class CustomClassifier {
     }
 
     public static void main(String[] args) {
-        CustomClassifier myCustomClassifier = new CustomClassifier();
-        myCustomClassifier.run();
+//        CustomClassifier myCustomClassifier = new CustomClassifier();
+//        myCustomClassifier.run(category);
     }
 
 }

@@ -5,7 +5,7 @@ import java.util.*;
 public class SkillsTaxonomyHarmoniser {
     // rules
     static boolean isLoop = false;
-    static boolean isApiKeyEnabled = false;
+    static boolean isApiKeyEnabled = true;
 
     //Initialised at start
     private Scanner sc = new Scanner(System.in);

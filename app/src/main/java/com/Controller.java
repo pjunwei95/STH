@@ -8,6 +8,7 @@ import static com.View.*;
 public class Controller {
     Scanner sc;
     CustomClassifier customClassifier;
+    Database database;
 
     String processInput() {
         String command = sc.nextLine();
@@ -56,8 +57,9 @@ public class Controller {
                 break;
             }
             case "2": {
-                customClassifier = new CustomClassifier();
-                customClassifier.run();
+                ArrayList<SkillObject> listOfSkillObjects = database.fetchAllSkills(database.getSkillColl());
+                String category = database.getCategoryRequest(listOfSkillObjects);
+                customClassifier.run(category);
                 break;
             }
             default: {
@@ -70,5 +72,7 @@ public class Controller {
 
     public Controller(Scanner sc) {
         this.sc = sc;
+        this.customClassifier = new CustomClassifier();
+        this.database = new Database();
     }
 }
