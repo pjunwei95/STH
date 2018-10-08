@@ -3,6 +3,7 @@ package com;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import org.mongojack.DBCursor;
@@ -11,10 +12,11 @@ import org.mongojack.DBUpdate;
 import org.mongojack.JacksonDBCollection;
 import org.mongojack.WriteResult;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
+
+import static com.SkillsTaxonomyHarmoniser.isDebug;
 
 public class Database {
     //TODO Working on TSC for now, need to implement adding to bucket, then add to industry
@@ -25,21 +27,34 @@ public class Database {
     JacksonDBCollection<Skill, String> skillColl;
     Scanner sc;
 
+    public static void main(String[] args) {
+        Database database = new Database();
+        database.run();
+    }
+
     void run(){
         try {
             //methods
             addSkill(sc);
-//            addKeywordToSkill("blah2", "Application Integration");
+//            addKeywordToSkill("hammering", "Engineering");
+//            addKeywordToSkill("screws", "Engineering");
 //            ArrayList<SkillObject> listOfSkillObjects = fetchAllSkills(skillColl);
 //            String category = getCategoryRequest(listOfSkillObjects);
 //            CustomClassifier customClassifier = new CustomClassifier();
-//            customClassifier.run(category);
+//            customClassifier.jsonToConfidenceResponse(category);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
     }
 
-    JacksonDBCollection<Skill, String> getSkillColl() {
+    void addKeywordToNoise(String keyword) {
+
+    }
+
+
+    public JacksonDBCollection<Skill, String> getSkillColl() {
+        System.out.println(Message.UPDATING_MESSAGE);
+
         try {
             mongoClient = new MongoClient();
             database = mongoClient.getDB("sth");
@@ -55,6 +70,7 @@ public class Database {
     }
 
     public String getCategoryRequest(ArrayList<SkillObject> listOfSkillObjects) {
+
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("{");
@@ -87,40 +103,45 @@ public class Database {
         while (cursor.hasNext()) {
             Skill skill = cursor.next();
             SkillObject skillObject = new SkillObject(skill.getName(),skill.getKeywords());
-            System.out.println("skillName = " + skill.getName());
+//            System.out.println("skillName = " + skill.getName());
             listOfSkillObjects.add(skillObject);
         }
 
         return listOfSkillObjects;
     }
 
-    void addKeywordToSkill(String keyword, String skillName) throws UnknownHostException {
+    void addKeywordToSkill(String keyword, String skillName) {
         Skill skill = null;
         boolean isInKeyword = false;
 
-        DBCursor<Skill> cursor = skillColl.find(DBQuery.is("name",skillName));
-        skill = cursor.next();
+        try {
+            DBCursor<Skill> cursor = skillColl.find(DBQuery.is("name", skillName));
+            skill = cursor.next();
 
-        if (!skill.equals(null)) {
+            if (!skill.equals(null)) {
 
-            ArrayList<String> keywords = skill.getKeywords();
-            for (String word : keywords) {
-                if (word.equals(keyword)) {
-                    isInKeyword = true;
-                    break;
+                ArrayList<String> keywords = skill.getKeywords();
+                for (String word : keywords) {
+                    if (word.equals(keyword)) {
+                        isInKeyword = true;
+                        break;
+                    }
                 }
-            }
-            if (!isInKeyword) {
-                skillColl.update(DBQuery.is("name", skillName),
-                        new DBUpdate.Builder().push("keywords", keyword));
-                System.out.println("Updated Successfully!");
-            }
-            else
-                System.out.println("This skill already contains the keyword! Adding failed.");
+                if (!isInKeyword) {
+                    skillColl.update(DBQuery.is("name", skillName),
+                            new DBUpdate.Builder().push("keywords", keyword));
+                    System.out.println("Updated Successfully!");
+                    System.out.printf("Keyword [%s] has been added to the skill [%s]!\n", keyword, skillName);
 
-        }
-        else
+                } else
+                    System.out.println("This skill already contains the keyword! Adding failed.");
+
+            }
+        } catch (NoSuchElementException e) {
             System.out.println("Skill not found! Adding failed.");
+            if (isDebug)
+                e.printStackTrace();
+        }
 
     }
 
@@ -141,28 +162,6 @@ public class Database {
         System.out.println(Message.DATABASE_UPDATE_SUCESS);
     }
 
-    //Deprecated
-    void mongoJackAddSampleData() throws UnknownHostException{
-
-            //Mongodriver, alternative way is using it to add manual DBObject
-            MongoClient mongoClient = new MongoClient();
-            DB database = mongoClient.getDB("sthbeta");
-            DBCollection dbCollection = database.getCollection("IT");
-
-            //MongoJack
-            JacksonDBCollection<Skill, String> coll = JacksonDBCollection.wrap(dbCollection, Skill.class,
-                    String.class);
-            Skill newSkill = new Skill("Application development", "TSC");
-            newSkill.addKeywords("blah1");
-            newSkill.addKeywords("blah2");
-            WriteResult<Skill, String> result = coll.insert(newSkill);
-            String id = result.getSavedId();
-            System.out.println("id = " +id);
-            Skill skill = coll.findOneById(id);
-            System.out.println("querying the first keyword: " + skill.getKeywords().get(0));
-            System.out.println(Message.DATABASE_UPDATE_SUCESS);
-
-    }
 
     public Database(){
         sc = new Scanner(System.in);
@@ -176,34 +175,32 @@ public class Database {
             skillColl = JacksonDBCollection.wrap(dbCollection, Skill.class,
                     String.class);
 
-            System.out.println(Message.UPDATING_MESSAGE);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) {
-        Database database = new Database();
-        database.run();
-    }
-}
+    //Deprecated
+    void mongoJackAddSampleData() throws UnknownHostException{
 
-class SkillObject{
-    private String name;
+        //Mongodriver, alternative way is using it to add manual DBObject
+        MongoClient mongoClient = new MongoClient();
+        DB database = mongoClient.getDB("sthbeta");
+        DBCollection dbCollection = database.getCollection("IT");
 
-    public String getName() {
-        return name;
-    }
+        //MongoJack
+        JacksonDBCollection<Skill, String> coll = JacksonDBCollection.wrap(dbCollection, Skill.class,
+                String.class);
+        Skill newSkill = new Skill("Application development", "TSC");
+        newSkill.addKeywords("blah1");
+        newSkill.addKeywords("blah2");
+        WriteResult<Skill, String> result = coll.insert(newSkill);
+        String id = result.getSavedId();
+        System.out.println("id = " +id);
+        Skill skill = coll.findOneById(id);
+        System.out.println("querying the first keyword: " + skill.getKeywords().get(0));
+        System.out.println(Message.DATABASE_UPDATE_SUCESS);
 
-    public ArrayList<String> getKeywords() {
-        return keywords;
-    }
-
-    private ArrayList<String> keywords;
-
-    public SkillObject(String name, ArrayList<String> keywords) {
-        this.name = name;
-        this.keywords = keywords;
     }
 
 }
