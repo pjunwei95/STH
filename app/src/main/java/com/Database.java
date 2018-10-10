@@ -19,12 +19,12 @@ import com.mongodb.MongoClient;
 import static com.SkillsTaxonomyHarmoniser.isDebug;
 
 public class Database {
-    //TODO Working on TSC for now, need to implement adding to bucket, then add to industry
-    String bucketName = "tsc";
     MongoClient mongoClient;
     DB database;
-    DBCollection dbCollection;
+    DBCollection skillDbCollection;
+    DBCollection noiseDbCollection;
     JacksonDBCollection<Skill, String> skillColl;
+    JacksonDBCollection<Skill, String> noiseColl;
     Scanner sc;
 
     public static void main(String[] args) {
@@ -33,35 +33,81 @@ public class Database {
     }
 
     void run(){
-        try {
             //methods
-            addSkill(sc);
-//            addKeywordToSkill("hammering", "Engineering");
-//            addKeywordToSkill("screws", "Engineering");
-//            ArrayList<SkillObject> listOfSkillObjects = fetchAllSkills(skillColl);
-//            String category = getCategoryRequest(listOfSkillObjects);
-//            CustomClassifier customClassifier = new CustomClassifier();
-//            customClassifier.jsonToConfidenceResponse(category);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
+        addKeywordToNoise("blah");
+    }
+
+    public ArrayList<Skill> fetchAllSkills() {
+        ArrayList<Skill> listOfSkills = new ArrayList<>();
+        DBCursor<Skill> cursor = skillColl.find();
+
+        while (cursor.hasNext()) {
+            Skill skill = cursor.next();
+            listOfSkills.add(skill);
+        }
+
+        return listOfSkills;
+    }
+
+    void removeKeywordFromSkill(String keyword, String skillName) {
+        Skill skill = null;
+        try {
+            DBCursor<Skill> cursor = skillColl.find(DBQuery.is("name", skillName));
+            skill = cursor.next();
+
+            if (!skill.equals(null)) {
+                skillColl.update(DBQuery.is("name", skillName),
+                            new DBUpdate.Builder().pull("keywords", keyword));
+                System.out.println("Updated Successfully!");
+                System.out.printf("Keyword [%s] has been removed from the skill [%s]!\n", keyword, skillName);
+            } else
+                System.out.println("This skill does not contain the keyword"); //should not happen
+
+        } catch (NoSuchElementException e) {
+            System.out.println("Skill not found! Adding failed.");
+            if (isDebug)
+                e.printStackTrace();
         }
     }
 
-    void addKeywordToNoise(String keyword) {
 
+    void addKeywordToNoise(String keyword) {
+            Skill skill = noiseColl.findOne(DBQuery.is("name", keyword));
+            if (skill != null) {
+                System.out.println("Already has noise with name: " + keyword);
+                System.out.println("Adding failed!");
+                return;
+            }
+
+            Skill newNoise = new Skill(keyword, "Noise");
+            noiseColl.insert(newNoise);
+            System.out.println(Message.DATABASE_UPDATE_SUCESS);
     }
 
 
-    public JacksonDBCollection<Skill, String> getSkillColl() {
+    public ArrayList<Skill> fetchAllSkillsWithKeyword(String keyword) {
+        ArrayList<Skill> listOfSkill = new ArrayList<>();
+        DBCursor<Skill> cursor = skillColl.find().in("keywords", keyword);
+
+        while (cursor.hasNext()) {
+            Skill skill = cursor.next();
+//            System.out.println("skillName = " + skill.getName());
+            listOfSkill.add(skill);
+        }
+
+        return listOfSkill;
+    }
+
+    public JacksonDBCollection<Skill, String> getJackSkillColl() {
         System.out.println(Message.UPDATING_MESSAGE);
 
         try {
             mongoClient = new MongoClient();
             database = mongoClient.getDB("sth");
             //To build finder
-            dbCollection = database.getCollection("Skills");
+            skillDbCollection = database.getCollection("Skills");
 
-            return skillColl = JacksonDBCollection.wrap(dbCollection, Skill.class,
+            return skillColl = JacksonDBCollection.wrap(skillDbCollection, Skill.class,
                     String.class);
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -69,26 +115,26 @@ public class Database {
         return null;
     }
 
-    public String getCategoryRequest(ArrayList<SkillObject> listOfSkillObjects) {
+    public String parseToJsonCategoryRequest(ArrayList<SkillCategory> listOfSkillCategories) {
 
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("{");
-        for (int i=0;i<listOfSkillObjects.size();i++) {
+        for (int i = 0; i< listOfSkillCategories.size(); i++) {
             stringBuilder.append("\"");
-            stringBuilder.append(listOfSkillObjects.get(i).getName());
+            stringBuilder.append(listOfSkillCategories.get(i).getName());
             stringBuilder.append("\"");
             stringBuilder.append(": [");
-            for (int j=0;j<listOfSkillObjects.get(i).getKeywords().size();j++) {
+            for (int j = 0; j< listOfSkillCategories.get(i).getKeywords().size(); j++) {
                 stringBuilder.append("\"");
-                stringBuilder.append(listOfSkillObjects.get(i).getKeywords().get(0));
+                stringBuilder.append(listOfSkillCategories.get(i).getKeywords().get(0));
                 stringBuilder.append("\"");
-                if (j!=listOfSkillObjects.get(i).getKeywords().size()-1)
+                if (j!= listOfSkillCategories.get(i).getKeywords().size()-1)
                     stringBuilder.append(",");
             }
 
             stringBuilder.append("]");
-            if (i!=listOfSkillObjects.size()-1)
+            if (i!= listOfSkillCategories.size()-1)
                 stringBuilder.append(",");
         }
         stringBuilder.append("}");
@@ -96,18 +142,18 @@ public class Database {
         return stringBuilder.toString();
     }
 
-    public ArrayList<SkillObject> fetchAllSkills(JacksonDBCollection<Skill,String> skillColl) {
-        ArrayList<SkillObject> listOfSkillObjects = new ArrayList<>();
+    public ArrayList<SkillCategory> fetchAllSkillCategoryToParse() {
+        ArrayList<SkillCategory> listOfSkillCategories = new ArrayList<>();
         DBCursor<Skill> cursor = skillColl.find();
 
         while (cursor.hasNext()) {
             Skill skill = cursor.next();
-            SkillObject skillObject = new SkillObject(skill.getName(),skill.getKeywords());
+            SkillCategory skillCategory = new SkillCategory(skill.getName(),skill.getKeywords());
 //            System.out.println("skillName = " + skill.getName());
-            listOfSkillObjects.add(skillObject);
+            listOfSkillCategories.add(skillCategory);
         }
 
-        return listOfSkillObjects;
+        return listOfSkillCategories;
     }
 
     void addKeywordToSkill(String keyword, String skillName) {
@@ -145,7 +191,7 @@ public class Database {
 
     }
 
-    public void addSkill(Scanner sc) throws UnknownHostException{
+    public void addSkill(Scanner sc, String bucketName){
         System.out.println("What skill do you want to add?");
         String skillName = sc.nextLine();
 //        String skillName = "testMultiple";
@@ -170,9 +216,13 @@ public class Database {
             mongoClient = new MongoClient();
             database = mongoClient.getDB("sth");
             //To build finder
-            dbCollection = database.getCollection("Skills");
+            skillDbCollection = database.getCollection("Skills");
+            noiseDbCollection = database.getCollection("Noise");
 
-            skillColl = JacksonDBCollection.wrap(dbCollection, Skill.class,
+            skillColl = JacksonDBCollection.wrap(skillDbCollection, Skill.class,
+                    String.class);
+
+            noiseColl = JacksonDBCollection.wrap(noiseDbCollection, Skill.class,
                     String.class);
 
         } catch (UnknownHostException e) {

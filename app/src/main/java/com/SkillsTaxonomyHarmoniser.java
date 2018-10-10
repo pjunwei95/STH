@@ -2,8 +2,8 @@ package com;
 
 public class SkillsTaxonomyHarmoniser {
     // rules
-    static boolean isDebug = true;
-    static boolean isLoop = false;
+    static boolean isDebug = false;
+    static boolean isLoop = true;
     static boolean isApiKeyEnabled = true;
 
     private Controller sthController;

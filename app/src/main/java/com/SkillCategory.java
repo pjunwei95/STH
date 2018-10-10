@@ -2,7 +2,7 @@ package com;
 
 import java.util.ArrayList;
 
-public class SkillObject {
+public class SkillCategory {
     private String name;
 
     public String getName() {
@@ -15,7 +15,7 @@ public class SkillObject {
 
     private ArrayList<String> keywords;
 
-    public SkillObject(String name, ArrayList<String> keywords) {
+    public SkillCategory(String name, ArrayList<String> keywords) {
         this.name = name;
         this.keywords = keywords;
     }

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import static com.SkillsTaxonomyHarmoniser.isDebug;
 import okhttp3.Response;
 
 
@@ -28,13 +29,10 @@ public class JsonResponseHandler {
             confidenceResponse.sortbyHighest();
 //            System.out.println(confidenceResponse);
 
-//            System.out.println("Testing: ");
-//            System.out.println("Getting value of 2nd tag: " +
-//                    confidenceResponse.getTaxonomy().get(1).getTag());
-
             //Pretty print
             String prettyConfidenceResponse = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(confidenceResponse);
-            System.out.println(prettyConfidenceResponse);
+            if (isDebug)
+                System.out.println(prettyConfidenceResponse);
 
         } catch (JsonGenerationException e) {
             e.printStackTrace();

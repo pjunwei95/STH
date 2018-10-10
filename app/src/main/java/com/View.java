@@ -2,6 +2,13 @@ package com;
 
 public class View {
 
+    static void displayChooseBuckets() {
+        System.out.println("Which buckets do you want to access?");
+        System.out.println("    1. TSC");
+        System.out.println("    2. GSC");
+        System.out.println("    3. Noise");
+    }
+
     static void displaySimilarPrompt(Taxonomy[] taxonomyArray, String keyword) {
         Taxonomy firstTaxonomy = taxonomyArray[0];
         Taxonomy secondTaxonomy = taxonomyArray[1];
@@ -11,12 +18,14 @@ public class View {
         System.out.printf("2. %s = %.3f\n", secondTaxonomy.getTag(), secondTaxonomy.getConfidence_score().doubleValue());
         System.out.printf("3. %s = %.3f\n", thirdTaxonomy.getTag(), thirdTaxonomy.getConfidence_score().doubleValue());
         System.out.println("Which skill do you want to place it in?");
+        System.out.println("Type 4=Noise or 5=Cancel");
     }
 
     static void displayWelcomeModel() {
+        System.out.println("You are accessing the Skills Framework Database: [Infocomm Technology]");
         System.out.println("What would you like to do?");
-        System.out.println("    1. Create new model" + Message.DISPLAY_DEVELOPMENT);
-        System.out.println("    2. Update existing model");
+        System.out.println("    1. Create new skill");
+        System.out.println("    2. View/Update existing skills");
     }
 
     static void displayErrorInput() {
@@ -28,7 +37,7 @@ public class View {
         System.out.println(Message.BORDER);
         System.out.println("Functions: ");
         System.out.println("    1. Harmonise the skills");
-        System.out.println("    2. Modify Skills Frameworks model");
+        System.out.println("    2. Modify Skills Framework Database");
         System.out.println(Message.INSTRUCTIONS);
     }
 
