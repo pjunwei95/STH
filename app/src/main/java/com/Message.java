@@ -1,7 +1,7 @@
 package com;
 
 public class Message {
-    public static final String VERSION_NO = "0.8";
+    public static final String VERSION_NO = "1.0";
     public static final String WELCOME_MESSAGE = "Welcome to the Skills Taxonomy Harmoniser V" + VERSION_NO +"!";
     public static final String BORDER = "======================================================================";
     public static final String ERROR_INPUT = "ERROR: INVALID INPUT!";

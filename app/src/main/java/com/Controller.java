@@ -163,6 +163,8 @@ public class Controller {
             switch (command) {
                 case "1":
                     return true;
+                case "2":
+                    return false;
                 default:
                     break;
             }
@@ -175,8 +177,10 @@ public class Controller {
         String keyword = sc.nextLine();
         ArrayList<Skill> listOfSkillsWithKeyword = database.fetchAllSkillsWithKeyword(keyword);
 
+        boolean isCustomClassifier = isKeywordInSkill(keyword, listOfSkillsWithKeyword);
+
         //TODO check keyword is under which skill(s)
-        if(!isKeywordInSkill(keyword, listOfSkillsWithKeyword))
+        if(isCustomClassifier)
             customClassifierCommand(keyword);
     }
 
@@ -204,7 +208,6 @@ public class Controller {
             }
             case "2": {
                 updateSkills();
-                displayUnderDevelopment();
                 break;
             }
             default: {
