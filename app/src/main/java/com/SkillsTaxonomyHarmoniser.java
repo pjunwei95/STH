@@ -2,7 +2,7 @@ package com;
 
 public class SkillsTaxonomyHarmoniser {
     // rules
-    static boolean isDebug = false;
+    static boolean isDebug = true;
     static boolean isLoop = true;
     static boolean isApiKeyEnabled = true;
 
@@ -14,6 +14,7 @@ public class SkillsTaxonomyHarmoniser {
     }
 
     private void run() {
+        System.out.println(Message.FANCY_NAME);
         System.out.println(Message.WELCOME_MESSAGE);
         try {
             while (true){

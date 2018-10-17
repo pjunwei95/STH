@@ -2,6 +2,22 @@ package com;
 
 public class Message {
     public static final String VERSION_NO = "1.0";
+    public static final String FANCY_NAME = "" +
+            "                            ,----,                     \n" +
+            "                          ,/   .`|                ,--, \n" +
+            "  .--.--.               ,`   .'  :              ,--.'| \n" +
+            " /  /    '.           ;    ;     /           ,--,  | : \n" +
+            "|  :  /`. /         .'___,/    ,'         ,---.'|  : ' \n" +
+            ";  |  |--`          |    :     |          |   | : _' | \n" +
+            "|  :  ;_            ;    |.';  ;          :   : |.'  | \n" +
+            " \\  \\    `.         `----'  |  |          |   ' '  ; : \n" +
+            "  `----.   \\            '   :  ;          '   |  .'. | \n" +
+            "  __ \\  \\  |            |   |  '          |   | :  | ' \n" +
+            " /  /`--'  /            '   :  |          '   : |  : ; \n" +
+            "'--'.     /             ;   |.'           |   | '  ,/  \n" +
+            "  `--'---'              '---'             ;   : ;--'   \n" +
+            "                                          |   ,/       \n" +
+            "                                          '---'        \n";
     public static final String WELCOME_MESSAGE = "Welcome to the Skills Taxonomy Harmoniser V" + VERSION_NO +"!";
     public static final String BORDER = "======================================================================";
     public static final String ERROR_INPUT = "ERROR: INVALID INPUT!";

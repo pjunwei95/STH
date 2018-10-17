@@ -133,13 +133,14 @@ public class Controller {
             if (firstTaxonomy.getConfidence_score().doubleValue() > CONFIDENCE_UPPER_LIMIT) {
                 database.addKeywordToSkill(keyword, firstTaxonomy.getTag());
                 Thread.sleep(1000);
-            } else if (firstTaxonomy.getConfidence_score().doubleValue() < CONFIDENCE_LOWER_LIMIT) {
-                database.addKeywordToNoise(keyword);
-                Thread.sleep(1000);
             } else if (decisionTree.isSimilar(firstTaxonomy.getConfidence_score().doubleValue(),
                     secondTaxonomy.getConfidence_score().doubleValue(),
                     thirdTaxonomy.getConfidence_score().doubleValue()))
                 similarPromptCommand(taxonomyArray, keyword);
+            else if (firstTaxonomy.getConfidence_score().doubleValue() < CONFIDENCE_LOWER_LIMIT) {
+                database.addKeywordToNoise(keyword);
+                Thread.sleep(1000);
+            }
             else if (isDebug)
                 System.out.println("NOT SUPPOSED TO HAPPEN");
         } catch (InterruptedException e) {
@@ -169,7 +170,7 @@ public class Controller {
                     break;
             }
         }
-        return false;
+        return true;
     }
 
     void sthCommand() {

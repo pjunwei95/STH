@@ -9,9 +9,9 @@ public class DecisionTree {
     public static final double CONFIDENCE_SIMILARITY_INDEX = 0.10;
 
     boolean isSimilar(double a, double b, double c) {
-        if (Math.abs(a-b)>CONFIDENCE_SIMILARITY_INDEX ||
-                Math.abs(a-c)>CONFIDENCE_SIMILARITY_INDEX ||
-                Math.abs(b-c)>CONFIDENCE_SIMILARITY_INDEX)
+        if (Math.abs(a-b)<CONFIDENCE_SIMILARITY_INDEX ||
+                Math.abs(a-c)<CONFIDENCE_SIMILARITY_INDEX ||
+                Math.abs(b-c)<CONFIDENCE_SIMILARITY_INDEX)
             return true;
         return false;
     }

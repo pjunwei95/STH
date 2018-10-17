@@ -82,6 +82,8 @@ public class Database {
             Skill newNoise = new Skill(keyword, "Noise");
             noiseColl.insert(newNoise);
             System.out.println(Message.DATABASE_UPDATE_SUCESS);
+            System.out.printf("Keyword [%s] has been added to [Noise]!\n", keyword);
+
     }
 
 
