@@ -12,3 +12,4 @@ api_key.xml
 app/gradlew
 app/gradlew.bat
 /response.txt
+api_key.txt
