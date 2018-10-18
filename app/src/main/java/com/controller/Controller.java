@@ -1,18 +1,13 @@
 package com.controller;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 import com.CustomClassifier;
 import com.DecisionTree;
 import com.JsonResponseHandler;
-import com.model.ConfidenceResponse;
-import com.model.Skill;
-import com.model.SkillCategory;
-import com.model.Taxonomy;
+import com.model.*;
 
-import static com.DecisionTree.CONFIDENCE_LOWER_LIMIT;
-import static com.DecisionTree.CONFIDENCE_UPPER_LIMIT;
+import static com.DecisionTree.*;
 import static com.view.View.*;
 import okhttp3.Response;
 
@@ -199,8 +194,6 @@ public class Controller {
             decisionTreeCommand(confidenceResponse, keyword);
         }
     }
-
-
 
     void executeModelCommand(String command) {
         switch (command) {
