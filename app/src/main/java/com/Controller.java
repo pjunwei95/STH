@@ -51,6 +51,7 @@ public class Controller {
                 System.out.println("What keyword do you want to add?");
                 String keyword = sc.nextLine();
                 database.addKeywordToSkill(keyword, skill.getName());
+                break;
             }
             case "2": {
                 System.out.println("What keyword do you want to remove?");
@@ -130,13 +131,14 @@ public class Controller {
         Taxonomy thirdTaxonomy = taxonomyArray[2];
 
         try {
-            if (firstTaxonomy.getConfidence_score().doubleValue() > CONFIDENCE_UPPER_LIMIT) {
-                database.addKeywordToSkill(keyword, firstTaxonomy.getTag());
-                Thread.sleep(1000);
-            } else if (decisionTree.isSimilar(firstTaxonomy.getConfidence_score().doubleValue(),
+            if (decisionTree.isSimilar(firstTaxonomy.getConfidence_score().doubleValue(),
                     secondTaxonomy.getConfidence_score().doubleValue(),
                     thirdTaxonomy.getConfidence_score().doubleValue()))
                 similarPromptCommand(taxonomyArray, keyword);
+            else if (firstTaxonomy.getConfidence_score().doubleValue() > CONFIDENCE_UPPER_LIMIT) {
+                database.addKeywordToSkill(keyword, firstTaxonomy.getTag());
+                Thread.sleep(1000);
+            }
             else if (firstTaxonomy.getConfidence_score().doubleValue() < CONFIDENCE_LOWER_LIMIT) {
                 database.addKeywordToNoise(keyword);
                 Thread.sleep(1000);
