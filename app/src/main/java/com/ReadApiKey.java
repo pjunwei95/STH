@@ -17,12 +17,7 @@ public class ReadApiKey {
 
     public static String getAPI_KEY() {
         try {
-//            Path path = Paths.get("api_key.txt");
-//            System.out.println(path.toUri());
-//            File file = new File(path.toUri());
-
             String API_KEY = readApiFromFile("api_key.txt", UTF_8);
-//            System.out.println(API_KEY);
             return API_KEY;
 
         } catch (IOException e) {

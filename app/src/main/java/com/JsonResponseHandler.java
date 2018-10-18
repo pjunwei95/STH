@@ -55,7 +55,7 @@ class ConfidenceResponse{
     private List<Taxonomy> taxonomy;
     private int code;
 
-        public void sortbyHighest() {
+    public void sortbyHighest() {
         Collections.sort(taxonomy, Collections.reverseOrder());
     }
 
@@ -63,17 +63,10 @@ class ConfidenceResponse{
         return taxonomy;
     }
 
-//    public void setTaxonomy(List<Taxonomy> taxonomy) {
-//        this.taxonomy = taxonomy;
-//    }
-
     public int getCode() {
         return code;
     }
 
-//    public void setCode(int code) {
-//        this.code = code;
-//    }
 }
 
 class Taxonomy implements Comparable<Taxonomy>{
@@ -90,15 +83,8 @@ class Taxonomy implements Comparable<Taxonomy>{
         return tag;
     }
 
-//    public void setTag(String tag) {
-//        this.tag = tag;
-//    }
-
     public BigDecimal getConfidence_score() {
         return confidence_score;
     }
 
-//    public void setConfidence_score(BigDecimal confidence_score) {
-//        this.confidence_score = confidence_score;
-//    }
 }

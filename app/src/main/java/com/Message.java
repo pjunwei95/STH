@@ -1,7 +1,7 @@
 package com;
 
 public class Message {
-    public static final String VERSION_NO = "1.0";
+    public static final String VERSION_NO = "1.2";
     public static final String FANCY_NAME = "" +
             "                            ,----,                     \n" +
             "                          ,/   .`|                ,--, \n" +

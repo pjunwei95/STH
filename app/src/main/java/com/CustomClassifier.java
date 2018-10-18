@@ -14,12 +14,6 @@ public class CustomClassifier {
 
     private static String API_KEY = ReadApiKey.getAPI_KEY();
 
-//    private static final String text = "i am good at hammering and java";
-
-//    public static final String category = "{\"IT\": [\"java\", \"programming\", \"APIs\"]," +
-//            " \"HR\": [\"human resource\"]}";
-
-
     public String parseResponseToJsonString(Response response) {
         String responseBodyStringJson = null;
         try {

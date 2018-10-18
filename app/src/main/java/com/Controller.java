@@ -13,11 +13,6 @@ public class Controller {
     private Scanner sc;
     private Database database;
 
-    public static void main(String args[]) {
-        Controller controller = new Controller();
-        controller.updateSkills();
-
-    }
 
     void updateSkills() {
         ArrayList<Skill> listOfSkills = database.fetchAllSkills();
@@ -143,8 +138,6 @@ public class Controller {
                 database.addKeywordToNoise(keyword);
                 Thread.sleep(1000);
             }
-            else if (isDebug)
-                System.out.println("NOT SUPPOSED TO HAPPEN");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -182,7 +175,6 @@ public class Controller {
 
         boolean isCustomClassifier = isKeywordInSkill(keyword, listOfSkillsWithKeyword);
 
-        //TODO check keyword is under which skill(s)
         if(isCustomClassifier)
             customClassifierCommand(keyword);
     }

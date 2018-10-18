@@ -27,16 +27,6 @@ public class Database {
     JacksonDBCollection<Skill, String> noiseColl;
     Scanner sc;
 
-    public static void main(String[] args) {
-        Database database = new Database();
-        database.run();
-    }
-
-    void run(){
-            //methods
-        addKeywordToNoise("blah");
-    }
-
     public ArrayList<Skill> fetchAllSkills() {
         ArrayList<Skill> listOfSkills = new ArrayList<>();
         DBCursor<Skill> cursor = skillColl.find();
