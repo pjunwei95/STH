@@ -1,4 +1,4 @@
-#Skills Taxonomy Harmoniser (STH)
+# Skills Taxonomy Harmoniser (STH)
 This is the GitHub repo for the Skills 
 Taxonomy Harmoniser (STH) Proof-of-Concept (PoC).
 
@@ -6,7 +6,7 @@ It is a CLI application which harmonises Skills.
 
 It is designed under the Capability Development Division (CDD) in Skills-Future Singapore (SSG) with the Skills Framework in mind. 
 
-#Architecture:
+# Architecture:
 
 * Standalone local CLI application
 * Design: Model-View-Controller (MVC) Framework
