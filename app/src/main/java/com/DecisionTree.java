@@ -2,13 +2,16 @@ package com;
 
 import java.util.List;
 
+import com.model.ConfidenceResponse;
+import com.model.Taxonomy;
+
 public class DecisionTree {
 
     public static final double CONFIDENCE_UPPER_LIMIT = 0.75;
     public static final double CONFIDENCE_LOWER_LIMIT = 0.25;
     public static final double CONFIDENCE_SIMILARITY_INDEX = 0.10;
 
-    boolean isSimilar(double a, double b, double c) {
+    public boolean isSimilar(double a, double b, double c) {
         if (Math.abs(a-b)<CONFIDENCE_SIMILARITY_INDEX ||
                 Math.abs(a-c)<CONFIDENCE_SIMILARITY_INDEX ||
                 Math.abs(b-c)<CONFIDENCE_SIMILARITY_INDEX)
@@ -16,7 +19,7 @@ public class DecisionTree {
         return false;
     }
 
-    Taxonomy[] execute(ConfidenceResponse confidenceResponse){
+    public Taxonomy[] execute(ConfidenceResponse confidenceResponse){
         Taxonomy[] taxonomyArray = new Taxonomy[3];
         List<Taxonomy> taxonomyList = confidenceResponse.getTaxonomy();
         if (taxonomyList.size() < 3) {

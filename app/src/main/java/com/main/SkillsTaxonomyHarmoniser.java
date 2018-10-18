@@ -1,10 +1,13 @@
-package com;
+package com.main;
+
+import com.controller.Controller;
+import com.view.Message;
 
 public class SkillsTaxonomyHarmoniser {
     // rules
-    static boolean isDebug = false;
     static boolean isLoop = true;
-    static boolean isApiKeyEnabled = true;
+    public static boolean isDebug = false;
+    public static boolean isApiKeyEnabled = true;
 
     private Controller sthController;
 

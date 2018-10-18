@@ -1,4 +1,4 @@
-package com;
+package com.controller;
 
 
 import java.net.UnknownHostException;
@@ -12,11 +12,14 @@ import org.mongojack.DBUpdate;
 import org.mongojack.JacksonDBCollection;
 import org.mongojack.WriteResult;
 
+import com.model.Skill;
+import com.model.SkillCategory;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
+import com.view.Message;
 
-import static com.SkillsTaxonomyHarmoniser.isDebug;
+import static com.main.SkillsTaxonomyHarmoniser.isDebug;
 
 public class Database {
     MongoClient mongoClient;
@@ -39,7 +42,7 @@ public class Database {
         return listOfSkills;
     }
 
-    void removeKeywordFromSkill(String keyword, String skillName) {
+    public void removeKeywordFromSkill(String keyword, String skillName) {
         Skill skill = null;
         try {
             DBCursor<Skill> cursor = skillColl.find(DBQuery.is("name", skillName));
@@ -60,8 +63,7 @@ public class Database {
         }
     }
 
-
-    void addKeywordToNoise(String keyword) {
+    public void addKeywordToNoise(String keyword) {
             Skill skill = noiseColl.findOne(DBQuery.is("name", keyword));
             if (skill != null) {
                 System.out.println("Already has noise with name: " + keyword);
@@ -75,7 +77,6 @@ public class Database {
             System.out.printf("Keyword [%s] has been added to [Noise]!\n", keyword);
 
     }
-
 
     public ArrayList<Skill> fetchAllSkillsWithKeyword(String keyword) {
         ArrayList<Skill> listOfSkill = new ArrayList<>();
@@ -148,7 +149,7 @@ public class Database {
         return listOfSkillCategories;
     }
 
-    void addKeywordToSkill(String keyword, String skillName) {
+    public void addKeywordToSkill(String keyword, String skillName) {
         Skill skill = null;
         boolean isInKeyword = false;
 
@@ -199,7 +200,6 @@ public class Database {
         skillColl.insert(newSkill);
         System.out.println(Message.DATABASE_UPDATE_SUCESS);
     }
-
 
     public Database(){
         sc = new Scanner(System.in);

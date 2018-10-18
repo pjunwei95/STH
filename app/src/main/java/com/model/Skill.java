@@ -1,4 +1,4 @@
-package com;
+package com.model;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ import org.mongojack.ObjectId;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-class Skill {
+public class Skill {
     private String _id;
     private String name;
     private ArrayList<String> keywords;

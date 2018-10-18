@@ -1,15 +1,17 @@
-package com;
+package com.view;
+
+import com.model.Taxonomy;
 
 public class View {
 
-    static void displayChooseBuckets() {
+    public static void displayChooseBuckets() {
         System.out.println("Which buckets do you want to access?");
         System.out.println("    1. TSC");
         System.out.println("    2. GSC");
         System.out.println("    3. Noise");
     }
 
-    static void displaySimilarPrompt(Taxonomy[] taxonomyArray, String keyword) {
+    public static void displaySimilarPrompt(Taxonomy[] taxonomyArray, String keyword) {
         Taxonomy firstTaxonomy = taxonomyArray[0];
         Taxonomy secondTaxonomy = taxonomyArray[1];
         Taxonomy thirdTaxonomy = taxonomyArray[2];
@@ -21,19 +23,19 @@ public class View {
         System.out.println("Type 4=Noise or 5=Cancel");
     }
 
-    static void displayWelcomeModel() {
+    public static void displayWelcomeModel() {
         System.out.println("You are accessing the Skills Framework Database: [Infocomm Technology]");
         System.out.println("What would you like to do?");
         System.out.println("    1. Create new skill");
         System.out.println("    2. View/Update existing skills");
     }
 
-    static void displayErrorInput() {
+    public static void displayErrorInput() {
         System.out.println(Message.ERROR_INPUT);
         System.out.println(Message.INSTRUCTIONS);
     }
 
-    static void displayWelcome() {
+    public static void displayWelcome() {
         System.out.println(Message.BORDER);
         System.out.println("Functions: ");
         System.out.println("    1. Harmonise the skills");
@@ -41,7 +43,7 @@ public class View {
         System.out.println(Message.INSTRUCTIONS);
     }
 
-    static void displayUnderDevelopment() {
+    public static void displayUnderDevelopment() {
         System.out.println(Message.DISPLAY_DEVELOPMENT.trim());
         System.out.println("Exiting...");
         System.out.println(Message.BORDER);

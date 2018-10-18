@@ -1,4 +1,4 @@
-package com;
+package com.view;
 
 public class Message {
     public static final String VERSION_NO = "1.2";

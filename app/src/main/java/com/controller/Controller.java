@@ -1,12 +1,19 @@
-package com;
+package com.controller;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.CustomClassifier;
+import com.DecisionTree;
+import com.JsonResponseHandler;
+import com.model.ConfidenceResponse;
+import com.model.Skill;
+import com.model.SkillCategory;
+import com.model.Taxonomy;
+
 import static com.DecisionTree.CONFIDENCE_LOWER_LIMIT;
 import static com.DecisionTree.CONFIDENCE_UPPER_LIMIT;
-import static com.SkillsTaxonomyHarmoniser.isDebug;
-import static com.View.*;
+import static com.view.View.*;
 import okhttp3.Response;
 
 public class Controller {

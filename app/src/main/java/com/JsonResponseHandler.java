@@ -1,17 +1,13 @@
 package com;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.model.ConfidenceResponse;
 
-import static com.SkillsTaxonomyHarmoniser.isDebug;
-import okhttp3.Response;
+import static com.main.SkillsTaxonomyHarmoniser.isDebug;
 
 
 public class JsonResponseHandler {
@@ -43,11 +39,6 @@ public class JsonResponseHandler {
         } finally {
             return confidenceResponse;
         }
-    }
-
-    public static void main(String[] args) {
-//        JsonResponseHandler jsonResponseHandler = new JsonResponseHandler();
-//        jsonResponseHandler.jsonToConfidenceResponse();
     }
 
 }
